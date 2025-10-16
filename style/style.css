@@ -1,0 +1,63 @@
+/* === ESTILO GENERAL === */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* === PANTALLA DE INICIO === */
+#splash {
+  position: fixed;
+  inset: 0;
+  background-color: #e53935; /* Rojo TepiaTravel */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.animation {
+  position: relative;
+  text-align: center;
+}
+
+.animation h1 {
+  font-size: 2rem;
+  margin: 0;
+  opacity: 0;
+  animation: fadeInText 2s ease forwards 1s;
+}
+
+.animation h1 span {
+  color: #ffeb3b; /* Amarillo para resaltar "TepiaTravel" */
+}
+
+.bus {
+  position: absolute;
+  left: -100px;
+  font-size: 2.5rem;
+  animation: busMove 3s ease-in-out forwards;
+}
+
+/* === ANIMACIONES === */
+@keyframes busMove {
+  0% { left: -100px; transform: rotate(0deg); }
+  50% { left: 50%; transform: translateX(-50%) rotate(5deg); }
+  100% { left: 110%; transform: rotate(0deg); }
+}
+
+@keyframes fadeInText {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* === DESAPARICIÓN DEL SPLASH === */
+.fade-out {
+  opacity: 0;
+  transition: opacity 1s ease;
+  pointer-events: none;
+}
