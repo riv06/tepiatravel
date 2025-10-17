@@ -1,12 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tepia travel</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TepiaTravel</title>
+  <link rel="stylesheet" href="style/intro.css">
+  <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-    <h1>Bienvenido a Tepia Travel</h1>
-    <h2>Estamos trabajando pronto nos encontraremos disponibles</h2>
+
+  <!-- Intro (pantalla inicial) -->
+  <div id="intro-placeholder"></div>
+
+  <!-- Contenido principal -->
+  <main id="main-content" style="display: none;">
+    <h2>Bienvenido a TepiaTravel</h2>
+    <p>Contenido principal de la página...</p>
+  </main>
+
+  <script src="script/intro.js"></script>
+  <script>
+    // Cargar dinámicamente el intro desde su archivo
+    fetch("pages/intro.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("intro-placeholder").innerHTML = html;
+      })
+      .then(() => {
+        // Mostrar el contenido principal luego del intro
+        setTimeout(() => {
+          document.getElementById("main-content").style.display = "block";
+        }, 3500);
+      });
+  </script>
 </body>
 </html>
