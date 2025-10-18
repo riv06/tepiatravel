@@ -1,6 +1,9 @@
 const app = document.getElementById("app");
 
 export async function loadSection(page, css) {
+  // Transición suave
+  app.style.opacity = "0";
+
   // Remover CSS previo
   const existingLink = document.getElementById("section-style");
   if (existingLink) existingLink.remove();
@@ -18,23 +21,30 @@ export async function loadSection(page, css) {
   app.innerHTML = html;
 
   // Intentar cargar JS propio de la sección
-try {
-  const sectionName = page.split("/").pop().replace(".html", ".js"); // "reserva.js"
-  const sectionJS = await import(`./${sectionName}`); // desde scripts/
-  if (sectionJS.init) sectionJS.init();
-} catch(e) {
-  console.error("No se pudo cargar JS de la sección:", e);
-}
-
+  try {
+    const sectionName = page.split("/").pop().replace(".html", ".js");
+    const sectionJS = await import(`./${sectionName}`);
+    if (sectionJS.init) sectionJS.init();
+  } catch (e) {
+    console.warn("No se pudo cargar JS de la sección:", e);
+  }
 
   setupSectionNavigation();
   updateActiveNav(page);
-  insertFooter();
+  insertFooter(page);
 
+  // Suavizar aparición
+  setTimeout(() => {
+    app.style.transition = "opacity 0.6s ease";
+    app.style.opacity = "1";
+  }, 50);
 }
 
-// Registrar botones internos de cada sección
+/* ==========================
+   REGISTRO DE BOTONES INTERNOS
+   ========================== */
 function setupSectionNavigation() {
+  // Botón "Reservar ahora" en main
   const btnReservaMain = document.getElementById("btn-reserva-main");
   if (btnReservaMain) {
     btnReservaMain.addEventListener("click", async (e) => {
@@ -43,6 +53,7 @@ function setupSectionNavigation() {
     });
   }
 
+  // Botón "Volver al inicio" desde secciones
   const btnHomeSection = document.getElementById("btn-home-section");
   if (btnHomeSection) {
     btnHomeSection.addEventListener("click", async (e) => {
@@ -50,11 +61,21 @@ function setupSectionNavigation() {
       await loadSection("pages/main.html", "style-pages/main.css");
     });
   }
+
+  // Botón "Iniciar sesión" desde intro u otra sección
+  const btnLoginSection = document.getElementById("btn-login-section");
+  if (btnLoginSection) {
+    btnLoginSection.addEventListener("click", async (e) => {
+      e.preventDefault();
+      await loadSection("pages/login.html", "style-pages/login.css");
+    });
+  }
 }
 
-// Actualiza el link activo del header
+/* ==========================
+   ACTUALIZAR LINK ACTIVO DEL HEADER
+   ========================== */
 function updateActiveNav(page) {
-  // Siempre buscar los links del header, no los de dentro de la sección
   const homeLink = document.getElementById("btn-home");
   const reservaLink = document.getElementById("btn-reserva");
 
@@ -70,7 +91,9 @@ function updateActiveNav(page) {
   }
 }
 
-// Event delegation para botones del header (SPA)
+/* ==========================
+   NAVEGACIÓN GLOBAL DEL HEADER
+   ========================== */
 document.addEventListener("click", async (e) => {
   const target = e.target;
 
@@ -83,14 +106,23 @@ document.addEventListener("click", async (e) => {
     e.preventDefault();
     await loadSection("pages/reserva.html", "style-pages/reserva.css");
   }
+
+  // 🔹 Botón global para login
+  if (target.id === "btn-login") {
+    e.preventDefault();
+    await loadSection("pages/login.html", "style-pages/login.css");
+  }
 });
 
-// Inicializa SPA con intro
+/* ==========================
+   INICIALIZAR SPA
+   ========================== */
 async function initApp() {
   await loadSection("pages/intro.html", "style-pages/intro.css");
 
   const intro = document.getElementById("intro");
   setTimeout(async () => {
+    if (!intro) return;
     intro.style.transition = "opacity 1s ease";
     intro.style.opacity = "0";
 
@@ -100,17 +132,19 @@ async function initApp() {
   }, 3500);
 }
 
-//Footer
-function insertFooter() {
+/* ==========================
+   FOOTER
+   ========================== */
+function insertFooter(page) {
   const footerHTML = `
     <footer>
       <p>&copy; 2025 TepiaTravel. Todos los derechos reservados.</p>
     </footer>
   `;
 
-  // Evitar duplicar
+  // Evitar duplicar y ocultar footer en login
   const existingFooter = document.querySelector("footer");
-  if (!existingFooter) {
+  if (!existingFooter && !page.includes("login.html")) {
     const div = document.createElement("div");
     div.innerHTML = footerHTML;
     app.appendChild(div);
@@ -118,3 +152,4 @@ function insertFooter() {
 }
 
 initApp();
+

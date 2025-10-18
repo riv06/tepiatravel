@@ -34,7 +34,33 @@
   animation: appear 2s ease-in 0.8s forwards;
 }
 
+/* 🔹 Botón "Iniciar sesión" */
+.btn-login-intro {
+  margin-top: 2rem;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  opacity: 0;
+  animation: appear 2s ease-in 1.2s forwards; /* aparece después del título */
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.btn-login-intro:hover {
+  background-color: #f3f3f3;
+  transform: scale(1.05);
+}
+
+/* 🔹 Animaciones */
 @keyframes appear {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
   to {
     opacity: 1;
     transform: scale(1);
