@@ -4,34 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TepiaTravel</title>
-  <link rel="stylesheet" href="style/intro.css">
-  <link rel="stylesheet" href="style/style.css">
+  <link rel="stylesheet" href="style/global.css">
 </head>
 <body>
 
-  <!-- Intro (pantalla inicial) -->
-  <div id="intro-placeholder"></div>
+  <!-- Header siempre visible -->
+  <header class="main-header">
+    <img src="assets/logo.svg" alt="Logo TepiaTravel" class="logo-header">
+    <nav>
+      <a href="#" id="btn-home" class="active">Inicio</a>
+      <a href="#" id="btn-reserva">Reservar</a>
+      <a href="#">Rutas</a>
+      <a href="#">Contacto</a>
+    </nav>
+  </header>
 
-  <!-- Contenido principal -->
-  <main id="main-content" style="display: none;">
-    <h2>Bienvenido a TepiaTravel</h2>
-    <p>Contenido principal de la página...</p>
-  </main>
+  <!-- Contenedor principal de la SPA --->
+  <div id="app"></div>
 
-  <script src="script/intro.js"></script>
-  <script>
-    // Cargar dinámicamente el intro desde su archivo
-    fetch("pages/intro.html")
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById("intro-placeholder").innerHTML = html;
-      })
-      .then(() => {
-        // Mostrar el contenido principal luego del intro
-        setTimeout(() => {
-          document.getElementById("main-content").style.display = "block";
-        }, 3500);
-      });
-  </script>
+
+  <script type="module" src="script/app.js"></script>
 </body>
 </html>

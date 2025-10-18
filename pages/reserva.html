@@ -1,0 +1,57 @@
+<section id="reserva-page">
+  <header class="main-header">
+    <img src="../assets/logo.svg" alt="Logo TepiaTravel" class="logo-header">
+    <nav>
+      <a href="#" id="btn-home">Inicio</a>
+      <a href="#" id="btn-reserva" class="active">Reservar</a>
+      <a href="#">Rutas</a>
+      <a href="#">Contacto</a>
+    </nav>
+  </header>
+
+  <div class="reserva-container">
+    <!-- Formulario -->
+    <div class="reserva-form-container">
+      <h1>Reserva tu viaje</h1>
+      
+
+      <form class="reserva-form" id="reserva-form">
+        <p>Selecciona tu destino, fecha y número de boletos</p>
+        <label for="origen">Origen:</label>
+        <select id="origen" name="origen" required>
+          <option value="">Selecciona origen</option>
+          <option value="CDMX">CDMX</option>
+          <option value="Guadalajara">Guadalajara</option>
+          <option value="Monterrey">Monterrey</option>
+          <option value="Puebla">Puebla</option>
+        </select>
+
+        <label for="destino">Destino:</label>
+        <select id="destino" name="destino" required>
+          <option value="">Selecciona destino</option>
+          <option value="Veracruz">Veracruz</option>
+          <option value="Cancún">Cancún</option>
+          <option value="Tijuana">Tijuana</option>
+        </select>
+
+        <label for="fecha">Fecha de salida:</label>
+        <input type="date" id="fecha" name="fecha" required>
+
+        <label for="boletos">Número de boletos:</label>
+        <input type="number" id="boletos" name="boletos" min="1" max="10" value="1" required>
+
+        <button type="submit" class="btn-primary">Reservar</button>
+      </form>
+
+      <div id="reserva-mensaje" style="margin-top:1rem; color:#ff4444;"></div>
+    </div>
+
+    <!-- Panel de asientos -->
+    <div class="asientos-panel" id="asientos-container">
+      <h2>Selecciona tus asientos</h2>
+      <div class="bus" id="bus-panel">
+        <!-- JS generará los 50 asientos aquí -->
+      </div>
+    </div>
+  </div>
+</section>
