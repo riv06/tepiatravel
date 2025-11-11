@@ -63,11 +63,11 @@ function setupSectionNavigation() {
   }
 
   // Botón "Iniciar sesión" desde intro u otra sección
-  const btnLoginSection = document.getElementById("btn-login-section");
+  const btnLoginSection = document.getElementById("btn-login");
   if (btnLoginSection) {
     btnLoginSection.addEventListener("click", async (e) => {
       e.preventDefault();
-      await loadSection("pages/login.html", "style-pages/login.css");
+      await loadSection("pages/inicio_sesion.html", "style-pages/inicio_sesion.css");
     });
   }
 }
@@ -110,7 +110,7 @@ document.addEventListener("click", async (e) => {
   // 🔹 Botón global para login
   if (target.id === "btn-login") {
     e.preventDefault();
-    await loadSection("pages/login.html", "style-pages/login.css");
+    await loadSection("pages/inicio_sesion.html", "style-pages/inicio_sesion.css");
   }
 });
 
@@ -144,7 +144,7 @@ function insertFooter(page) {
 
   // Evitar duplicar y ocultar footer en login
   const existingFooter = document.querySelector("footer");
-  if (!existingFooter && !page.includes("login.html")) {
+  if (!existingFooter && !page.includes("inicio_sesion.html")) {
     const div = document.createElement("div");
     div.innerHTML = footerHTML;
     app.appendChild(div);

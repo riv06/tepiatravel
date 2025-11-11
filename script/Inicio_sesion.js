@@ -1,3 +1,4 @@
+import { loadSection } from "./app.js";
 export function init() {
   const form = document.getElementById("login-form");
   const message = document.getElementById("login-message");
