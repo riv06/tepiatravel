@@ -1,0 +1,122 @@
+/* ================================
+   ESTILOS GENERALES
+================================ */
+#contact-page {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #000000, #1a2123);
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+/* ================================
+   CONTENEDOR DEL FORMULARIO
+================================ */
+.contact-container {
+  background: #ffffff;
+  width: 100%;
+  max-width: 450px;
+  padding: 26px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  text-align: center;
+  animation: fadeIn 0.8s ease;
+}
+
+/* ================================
+   LOGO
+================================ */
+.contact-logo {
+  width: 90px;
+  margin-bottom: 15px;
+}
+
+/* ================================
+   TÍTULO Y SUBTÍTULO
+================================ */
+h1 {
+  font-size: 26px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+/* ================================
+   FORMULARIO
+================================ */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.contact-form label {
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 5px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 15px;
+  font-size: 15px;
+  transition: border 0.3s;
+}
+
+.contact-form textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #b0091c;
+  outline: none;
+}
+
+/* ================================
+   BOTÓN
+================================ */
+.btn-primary {
+  padding: 10px;
+  background: #8e2e2e;
+  color: white;
+  border: none;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+  width: 100%;
+}
+
+.btn-primary:hover {
+  background: #710202;
+}
+
+/* ================================
+   MENSAJE FINAL
+================================ */
+.contact-message {
+  margin-top: 15px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+/* ================================
+   ANIMACIONES
+================================ */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
