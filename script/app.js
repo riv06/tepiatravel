@@ -41,7 +41,7 @@ export async function loadSection(page, css) {
 }
 
 /* ==========================
-   REGISTRO DE BOTONES INTERNOS
+   BOTONES INTERNOS DE SECCIONES
    ========================== */
 function setupSectionNavigation() {
   // Botón "Reservar ahora" en main
@@ -53,7 +53,7 @@ function setupSectionNavigation() {
     });
   }
 
-  // Botón "Volver al inicio" desde secciones
+  // Botón "Volver al inicio"
   const btnHomeSection = document.getElementById("btn-home-section");
   if (btnHomeSection) {
     btnHomeSection.addEventListener("click", async (e) => {
@@ -62,7 +62,7 @@ function setupSectionNavigation() {
     });
   }
 
-  // Botón "Iniciar sesión" desde intro u otra sección
+  // Botón "Iniciar sesión" desde una sección
   const btnLoginSection = document.getElementById("btn-login");
   if (btnLoginSection) {
     btnLoginSection.addEventListener("click", async (e) => {
@@ -73,7 +73,7 @@ function setupSectionNavigation() {
 }
 
 /* ==========================
-   ACTUALIZAR LINK ACTIVO DEL HEADER
+   MARCAR LINK ACTIVO DEL HEADER
    ========================== */
 function updateActiveNav(page) {
   const homeLink = document.getElementById("btn-home");
@@ -84,15 +84,12 @@ function updateActiveNav(page) {
   homeLink.classList.remove("active");
   reservaLink.classList.remove("active");
 
-  if (page.includes("main.html")) {
-    homeLink.classList.add("active");
-  } else if (page.includes("reserva.html")) {
-    reservaLink.classList.add("active");
-  }
+  if (page.includes("main.html")) homeLink.classList.add("active");
+  if (page.includes("reserva.html")) reservaLink.classList.add("active");
 }
 
 /* ==========================
-   NAVEGACIÓN GLOBAL DEL HEADER
+   LISTENER GLOBAL DEL HEADER
    ========================== */
 document.addEventListener("click", async (e) => {
   const target = e.target;
@@ -107,10 +104,14 @@ document.addEventListener("click", async (e) => {
     await loadSection("pages/reserva.html", "style-pages/reserva.css");
   }
 
-  // 🔹 Botón global para login
   if (target.id === "btn-login") {
     e.preventDefault();
     await loadSection("pages/inicio_sesion.html", "style-pages/inicio_sesion.css");
+  }
+
+  if (target.id === "btn-contacto") {
+    e.preventDefault();
+    await loadSection("pages/contacto.html", "style-pages/contacto.css");
   }
 });
 
@@ -142,7 +143,7 @@ function insertFooter(page) {
     </footer>
   `;
 
-  // Evitar duplicar y ocultar footer en login
+  // Evitar duplicado y ocultarlo en login
   const existingFooter = document.querySelector("footer");
   if (!existingFooter && !page.includes("inicio_sesion.html")) {
     const div = document.createElement("div");
@@ -152,4 +153,3 @@ function insertFooter(page) {
 }
 
 initApp();
-
