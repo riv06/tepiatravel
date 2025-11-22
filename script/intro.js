@@ -8,5 +8,5 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       intro.style.display = "none";
     }, 1000);
-  }, 3000);
+  }, 1000);
 });
