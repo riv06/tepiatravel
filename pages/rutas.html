@@ -1,0 +1,53 @@
+<section id="rutas-page">
+    <div class="rutas-container">
+        <h1>Rutas Disponibles</h1>
+        <p class="subtitle">Encuentra tu viaje ideal</p>
+
+        <!-- Filtros de búsqueda -->
+        <div class="search-filters">
+            <div class="filter-group">
+                <label for="filter-origin">Origen:</label>
+                <select id="filter-origin">
+                    <option value="">Todos</option>
+                    <option value="CDMX">CDMX</option>
+                    <option value="Guadalajara">Guadalajara</option>
+                    <option value="Monterrey">Monterrey</option>
+                    <option value="Puebla">Puebla</option>
+                    <option value="Veracruz">Veracruz</option>
+                    <option value="Cancún">Cancún</option>
+                    <option value="Tijuana">Tijuana</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="filter-destination">Destino:</label>
+                <select id="filter-destination">
+                    <option value="">Todos</option>
+                    <option value="CDMX">CDMX</option>
+                    <option value="Guadalajara">Guadalajara</option>
+                    <option value="Monterrey">Monterrey</option>
+                    <option value="Puebla">Puebla</option>
+                    <option value="Veracruz">Veracruz</option>
+                    <option value="Cancún">Cancún</option>
+                    <option value="Tijuana">Tijuana</option>
+                </select>
+            </div>
+
+            <button id="btn-filter" class="btn-primary">Buscar</button>
+            <button id="btn-clear-filter" class="btn-secondary">Limpiar</button>
+        </div>
+
+        <!-- Mensaje de carga -->
+        <div id="loading-message" class="loading-message" style="display: none;">
+            Cargando rutas...
+        </div>
+
+        <!-- Mensaje de error -->
+        <div id="error-message" class="error-message" style="display: none;"></div>
+
+        <!-- Lista de rutas -->
+        <div id="rutas-list" class="rutas-grid">
+            <!-- Las rutas se cargarán aquí dinámicamente -->
+        </div>
+    </div>
+</section>

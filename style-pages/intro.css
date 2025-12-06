@@ -2,15 +2,15 @@
   background-color: #000; /* negro */
   color: #fff;
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - var(--header-height));
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   position: fixed;
-  top: 0;
+  top: var(--header-height);
   left: 0;
-  z-index: 999;
+  z-index: 900; /* debe quedar debajo del header */
 }
 
 .intro-container {
@@ -32,6 +32,12 @@
   margin-top: 1rem;
   opacity: 0;
   animation: appear 2s ease-in 0.8s forwards;
+}
+
+@media (max-width: 600px) {
+  .logo { width: 120px; }
+  .title { font-size: 1.6rem; }
+  .btn-login-intro { padding: 0.6rem 1.6rem; }
 }
 
 /* 🔹 Botón "Iniciar sesión" */

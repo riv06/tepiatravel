@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TepiaTravel</title>
   <link rel="stylesheet" href="style/global.css">
 </head>
+
 <body>
 
   <!-- Header siempre visible -->
@@ -14,10 +16,20 @@
     <nav>
       <a href="#" id="btn-home" class="active">Inicio</a>
       <a href="#" id="btn-reserva">Reservar</a>
-      <a href="#">Rutas</a>
+      <a href="#" id="btn-rutas">Rutas</a>
       <a href="#" id="btn-contacto">Contacto</a>
-      <!-- 🔹 Nuevo botón global para Login -->
-      <a href="#" id="btn-login" class="btn-login">Iniciar sesión</a>
+
+      <!-- Botones de autenticación (mostrados cuando NO está logueado) -->
+      <div id="auth-buttons" class="auth-buttons">
+        <a href="#" id="btn-register" class="btn-register">Registrarse</a>
+        <a href="#" id="btn-login" class="btn-login">Iniciar sesión</a>
+      </div>
+
+      <!-- Botones cuando está logueado -->
+      <div id="user-menu" class="user-menu" style="display: none;">
+        <span id="user-email" class="user-email"></span>
+        <a href="#" id="btn-logout" class="btn-logout">Cerrar sesión</a>
+      </div>
     </nav>
   </header>
 
@@ -27,4 +39,5 @@
   <!-- Script principal -->
   <script type="module" src="script/app.js"></script>
 </body>
+
 </html>

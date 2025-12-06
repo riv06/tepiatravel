@@ -3,35 +3,79 @@
 ================================ */
 #register-page {
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - var(--header-height));
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #120808, #000000);
-  padding: px;
+  background: linear-gradient(135deg, #1a0000 0%, #0a0a0a 50%, #000000 100%);
+  padding: 1rem;
   box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+#register-page::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255, 68, 68, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(30px); }
 }
 
 /* ================================
    CONTENEDOR DEL FORMULARIO
 ================================ */
 .register-container {
-  background: #090808;
+  background: rgba(20, 20, 20, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   width: 100%;
   max-width: 400px;
-  padding: 22px;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  padding: 40px 50px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   text-align: center;
-  animation: fadeIn 0.8s ease;
-  border: 2px solid #e77474;
+  animation: slideUp 0.8s ease-out;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .register-container { 
+    padding: 24px; 
+    max-width: 340px; 
+  }
+  .register-logo { 
+    width: 80px; 
+  }
 }
 
 /* ================================
    LOGO
 ================================ */
 .register-logo {
-  width: 90px;
+  width: 100px;
   margin-bottom: 15px;
 }
 
@@ -39,9 +83,11 @@
    TÍTULO
 ================================ */
 h1 {
-  font-size: 26px;
-  color: #ffffff;
-  margin-bottom: 20px;
+  font-size: 2rem;
+  color: #ff4444;
+  margin-bottom: 25px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
 }
 
 /* ================================
@@ -51,45 +97,62 @@ h1 {
   display: flex;
   flex-direction: column;
   text-align: left;
+  gap: 15px;
 }
 
 .register-form label {
-  font-size: 14px;
-  color: #fbfbfb;
-  margin-bottom: 5px;
+  font-size: 0.95rem;
+  color: #e0e0e0;
+  font-weight: 500;
 }
 
 .register-form input {
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  margin-bottom: 18px;
-  font-size: 15px;
-  transition: border 0.3s;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.register-form input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .register-form input:focus {
-  border-color: #ad0260;
   outline: none;
+  border-color: #ff4444;
+  background: rgba(255, 68, 68, 0.1);
+  box-shadow: 0 0 15px rgba(255, 68, 68, 0.2);
 }
 
 /* ================================
    BOTÓN PRINCIPAL
 ================================ */
 .btn-primary {
-  padding: 12px;
-  background: #a9363a;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%);
   color: white;
   border: none;
-  font-size: 16px;
+  font-size: 1rem;
+  font-weight: 600;
   border-radius: 10px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: all 0.3s ease;
   width: 100%;
+  margin-top: 10px;
+  box-shadow: 0 8px 20px rgba(255, 68, 68, 0.3);
 }
 
 .btn-primary:hover {
-  background: #aa1010;
+  background: linear-gradient(135deg, #ff6666 0%, #dd1111 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(255, 68, 68, 0.5);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
 }
 
 /* ================================
@@ -97,18 +160,18 @@ h1 {
 ================================ */
 .login-text {
   margin-top: 15px;
-  font-size: 14px;
+  font-size: 0.9rem;
   text-align: center;
 }
 
 .login-text a {
-  color: #de2541;
+  color: #ff4444;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .login-text a:hover {
-  text-decoration: underline;
+  color: #ff6666;
 }
 
 /* ================================
@@ -116,8 +179,8 @@ h1 {
 ================================ */
 .register-message {
   margin-top: 15px;
-  font-size: 15px;
-  font-weight: bold;
+  font-size: 0.95rem;
+  font-weight: 500;
 }
 
 /* ================================

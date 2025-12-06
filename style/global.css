@@ -22,7 +22,7 @@ body {
   position: fixed;
   width: 100%;
   top: 0;
-  z-index: 10;
+  z-index: 10000 !important;
   backdrop-filter: blur(6px);
 }
 
@@ -31,17 +31,78 @@ body {
   border-radius: 10px;
 }
 
+nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  margin-left: 2rem;
+}
+
 nav a {
   color: #ccc;
-  margin: 0 1rem;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease;
+  white-space: nowrap;
 }
 
 nav a:hover,
 nav a.active {
   color: #ff4444;
+}
+
+/* Contenedores de botones de autenticación */
+.auth-buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-left: auto;
+}
+
+.btn-register, .btn-login {
+  color: #ccc;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+}
+
+.btn-register:hover,
+.btn-login:hover {
+  color: #ff4444;
+}
+
+.btn-register.active,
+.btn-login.active {
+  color: #ff4444;
+}
+
+/* Menú de usuario (cuando está logueado) */
+.user-menu {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.user-email {
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+.btn-logout {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  background: #8b0000;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.3s ease;
+  white-space: nowrap;
+}
+
+.btn-logout:hover {
+  background: #ff4444;
 }
 
 .btn-primary {
@@ -91,8 +152,80 @@ html, body {
   flex-direction: column;
 }
 
+:root {
+  --header-height: 72px; /* valor por defecto; actualizado dinámicamente por JS */
+}
+
 #app {
   flex: 1; /* ocupa todo el espacio disponible */
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
+  padding-top: var(--header-height);
+  transition: padding-top 0.25s ease;
+}
+
+/* Regla global para secciones que ocupan la pantalla completa
+   ajustando la altura disponible restando la cabecera fija */
+[id$="-page"], section[id$="-page"], .hero {
+  min-height: calc(100vh - var(--header-height));
+  box-sizing: border-box;
+  padding-top: 1rem;
+}
+
+/* Estilo para mensaje de carga/errores al inyectar secciones */
+.load-error {
+  padding: 2rem;
+  text-align: center;
+  background: rgba(255, 68, 68, 0.06);
+  border: 1px solid rgba(255, 68, 68, 0.12);
+  border-radius: 8px;
+  color: #ffb3b3;
+  margin: 2rem;
+}
+
+/* Mejora de accesibilidad: outlines visibles para teclado */
+input:focus, textarea:focus, select:focus, button:focus {
+  outline: 3px solid rgba(255, 68, 68, 0.18);
+  outline-offset: 2px;
+}
+
+button:focus { box-shadow: 0 0 0 3px rgba(255,68,68,0.12); }
+
+/* ===== SELECT / OPTION ===== */
+/* Forzar estilos legibles en selects y opciones (evita fondo blanco con texto blanco) */
+select,
+option {
+  background-color: #111 !important;
+  color: #fff !important;
+}
+
+option:hover {
+  background-color: #222 !important;
+}
+
+select::-ms-expand { 
+  display: block; 
+}
+
+/* ===== INPUT DATE (DATEPICKER) ===== */
+/* Icono de calendario en rojo */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1) hue-rotate(0deg) brightness(2) saturate(2);
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* Datepicker nativo con tema oscuro (navegadores que lo soportan) */
+input[type="date"] {
+  accent-color: #ff4444;
+}
+
+/* Fallback para browsers sin soporte de estilos nativos del datepicker */
+input[type="date"]::placeholder {
+  color: rgba(255, 255, 255, 0.5);
 }
